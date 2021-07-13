@@ -1,13 +1,14 @@
 ---
 getting_started:
   title: '开始使用 {% data variables.product.prodname_actions %}'
-  description: 'Discover the possibilities of {% data variables.product.prodname_actions %} by creating your first workflow.'
+  description: '通过创建第一个工作流程来发现 {% data variables.product.prodname_actions %} 的可能性。'
   guides:
     - /actions/learn-github-actions/introduction-to-github-actions
     - /actions/learn-github-actions/finding-and-customizing-actions
     - /actions/learn-github-actions/essential-features-of-github-actions
     - /actions/learn-github-actions/managing-complex-workflows
     - /actions/learn-github-actions/security-hardening-for-github-actions
+  featured_track: true
 continuous_integration:
   title: '构建和测试代码'
   description: '您可以在仓库中创建自定义的持续集成 (CI) 工作流程。'

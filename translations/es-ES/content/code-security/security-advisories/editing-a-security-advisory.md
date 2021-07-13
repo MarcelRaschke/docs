@@ -5,8 +5,10 @@ redirect_from:
   - /github/managing-security-vulnerabilities/editing-a-security-advisory
 versions:
   free-pro-team: '*'
+type: how_to
 topics:
-  - seguridad
+  - Security advisories
+  - Vulnerabilities
 ---
 
 Las personas con permisos de administrador en una asesoría de seguridad pueden editarla.
@@ -16,6 +18,8 @@ Las personas con permisos de administrador en una asesoría de seguridad pueden 
 Puedes dar crédito a las personas que ayudaron a descubrir, reportar, o arreglar una vulnerabilidad de seguridad. Si le das crédito a alguien, ellos pueden elegir aceptarlo o declinarlo.
 
 Si alguien acepta el crédito, el nombre de usuario de la persona aparecerá en la sección "Créditos" de la asesoría de seguridad. Cualquiera con acceso de lectura al repositorio puede ver la asesoría y las personas que aceptaron el crédito por ella.
+
+Si crees que se te debería dar crédito por alguna asesoría de seguridad, por favor, contacta a la persona que la creó y pídele que edite la asesoría para incluir tu crédito. Solo el creador de la asesoría te puede dar crédito, asi que, por favor, no contactes al Soporte de GitHub pidiendo crédito para alguna asesoría de seguridad.
 
 ### Editar una asesoría de seguridad
 

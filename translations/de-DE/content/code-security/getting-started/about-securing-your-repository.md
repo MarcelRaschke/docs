@@ -8,7 +8,7 @@ versions:
   enterprise-server: '>=3.0'
   github-ae: '*'
 topics:
-  - repositorys
+  - Repositories
 ---
 
 ### Setting up your repository securely
@@ -22,11 +22,13 @@ The first step to securing a repository is to set up who can see and modify your
 {% if currentVersion == "free-pro-team@latest" or currentVersion ver_gt "enterprise-server@2.22" %}
 #### Available for all repositories
 
-{% if currentVersion == "free-pro-team@latest" %}
+{% if currentVersion == "free-pro-team@latest" or currentVersion ver_gt "enterprise-server@3.0" or currentVersion == 'github-ae@next' %}
 - **Security policy**
 
-  Make it easy for people to confidentially report security vulnerabilities they've found in your repository. Weitere Informationen findest Du unter „[Eine Sicherheitsrichtlinie zum Repository hinzufügen](/github/managing-security-vulnerabilities/adding-a-security-policy-to-your-repository)“.
+  Make it easy for your users to confidentially report security vulnerabilities they've found in your repository. Weitere Informationen findest Du unter „[Eine Sicherheitsrichtlinie zum Repository hinzufügen](/code-security/getting-started/adding-a-security-policy-to-your-repository)“.
+{% endif %}
 
+{% if currentVersion == "free-pro-team@latest" %}
 - **Security advisories**
 
   Privately discuss and fix security vulnerabilities in your repository's code. You can then publish a security advisory to alert your community to the vulnerability and encourage them to upgrade. Weitere Informationen findest Du unter „[ Über {% data variables.product.prodname_security_advisories %}](/github/managing-security-vulnerabilities/about-github-security-advisories)."
@@ -61,7 +63,7 @@ These features are available {% if currentVersion == "free-pro-team@latest" %}fo
 
   Automatically detect security vulnerabilities and coding errors in new or modified code. Potential problems are highlighted, with detailed information, allowing you to fix the code before it's merged into your default branch. For more information, see "[About code scanning](/github/finding-security-vulnerabilities-and-errors-in-your-code/about-code-scanning)."
 
-- **Detected secrets**
+- **{% data variables.product.prodname_secret_scanning_caps %} alerts**
 
   {% if currentVersion == "free-pro-team@latest" %}For private repositories, view {% else %}View {% endif %}any secrets that {% data variables.product.prodname_dotcom %} has found in your code. You should treat tokens or credentials that have been checked into the repository as compromised. For more information, see "[About secret scanning](/github/administering-a-repository/about-secret-scanning)."
 

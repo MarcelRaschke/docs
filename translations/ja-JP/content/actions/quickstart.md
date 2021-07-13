@@ -1,6 +1,6 @@
 ---
 title: GitHub Actions のクイックスタート
-intro: '{% data variables.product.prodname_actions %} ワークフローを 5 分以内に既存のリポジトリに追加します。'
+intro: '{% data variables.product.prodname_actions %} の機能を 5 分またはそれ以下で試すことができます。'
 allowTitleToDifferFromFilename: true
 redirect_from:
   - /actions/getting-started-with-github-actions/starting-with-preconfigured-workflow-templates
@@ -8,9 +8,9 @@ versions:
   free-pro-team: '*'
   enterprise-server: '>=2.22'
   github-ae: '*'
-type: 'quick_start'
+type: quick_start
 topics:
-  - '基本'
+  - Fundamentals
 ---
 
 {% data reusables.actions.enterprise-beta %}
@@ -19,57 +19,58 @@ topics:
 
 ### はじめに
 
-{% data variables.product.prodname_actions %} ワークフローを作成して実行するには、既存の {% data variables.product.prodname_dotcom %} リポジトリのみが必要です。 このガイドでは、[{% data variables.product.prodname_dotcom %} Super-Linter アクション](https://github.com/github/super-linter)を使用して複数のコーディング言語の文法チェックを行うワークフローを追加します。 ワークフローは Super-Linter を使用して、新しいコミットがリポジトリにプッシュされるたびにソースコードを検証します。
+{% data variables.product.prodname_actions %} ワークフローを作成して実行するには、{% data variables.product.prodname_dotcom %} リポジトリのみが必要になります。 このガイドでは、{% data variables.product.prodname_actions %} の重要な機能のいくつかを示すワークフローを追加します。
+
+次の例は、{% data variables.product.prodname_actions %} ジョブを自動的にトリガーする方法、実行する場所、およびリポジトリ内のコードとやり取りする方法を示しています。
 
 ### 最初のワークフローを作成する
 
-1. {% data variables.product.prodname_dotcom %} のリポジトリから、`superlinter.yml` という名前の新しいファイルを `.github/workflows` ディレクトリに作成します。 詳細は「[新しいファイルを作成する](/github/managing-files-in-a-repository/creating-new-files)」を参照してください。
-2. 次の YAML コンテンツを `superlinter.yml` ファイルにコピーします。 **注釈:** デフォルトブランチが `main` でない場合は、リポジトリのデフォルトブランチ名と一致するように `DEFAULT_BRANCH` の値を更新してください。
+1. {% data variables.product.prodname_dotcom %} のリポジトリから、`github-actions-demo.yml` という名前の新しいファイルを `.github/workflows` ディレクトリに作成します。 詳細は「[新しいファイルを作成する](/github/managing-files-in-a-repository/creating-new-files)」を参照してください。
+2. 次の YAML コンテンツを `github-actions-demo.yml` ファイルにコピーします。
     {% raw %}
     ```yaml{:copy}
-    name: Super-Linter
-
-    # 新しいコミットがリポジトリにプッシュされるたびにこのワークフローを実行する
-    on: push
-
+    name: GitHub Actions Demo
+    on: [push]
     jobs:
-      # ジョブキーを設定する。 ジョブ名が指定されていない場合、
-      # キーはジョブ名として表示される
-      super-lint:
-        # ジョブ名を付ける
-        name: Lint code base
-        # 実行するマシンのタイプを設定する
+      Explore-GitHub-Actions:
         runs-on: ubuntu-latest
-
         steps:
-          # ubuntu-latest マシンでリポジトリのコピーをチェックアウトする
-          - name: Checkout code
+          - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+          - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+          - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+          - name: Check out repository code
             uses: actions/checkout@v2
+          - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
+          - run: echo "🖥️ The workflow is now ready to test your code on the runner."
+          - name: List files in the repository
+            run: |
+              ls ${{ github.workspace }}
+          - run: echo "🍏 This job's status is ${{ job.status }}."
 
-          # Super-Linter アクションを実行する
-          - name: Run Super-Linter
-            uses: github/super-linter@v3
-            env:
-              DEFAULT_BRANCH: main
-              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     ```
     {% endraw %}
-3. ワークフローを実行するには、ページの一番下までスクロールし、[**Create a new branch for this commit and start a pull request**] を選択します。 次に、[**Propose new file**] をクリックしてPull Requestを作成します。 ![ワークフローファイルのコミット](/assets/images/commit-workflow-file.png)
+3. ページの一番下までスクロールし、[**Create a new branch for this commit and start a pull request**] を選択します。 次に、[**Propose new file**] をクリックしてPull Requestを作成します。 ![ワークフローファイルのコミット](/assets/images/help/repository/actions-quickstart-commit-new-file.png)
 
-リポジトリ内のワークフローファイルをコミットすると、`push` イベントがトリガーされ、ワークフローが実行されます。
+リポジトリ内のワークフローファイルをブランチにコミットすると、`push` イベントがトリガーされ、ワークフローが実行されます。
 
 ### ワークフローの結果を表示する
 
 {% data reusables.repositories.navigate-to-repo %}
 {% data reusables.repositories.actions-tab %}
-{% data reusables.repositories.navigate-to-workflow-superlinter %}
-{% data reusables.repositories.view-run-superlinter %}
-{% if currentVersion == "free-pro-team@latest" or currentVersion ver_gt "enterprise-server@3.0" or currentVersion == "github-ae@latest" %}
-1. **Jobs（ジョブ）**の下、もしくは可視化グラフ内で、**Lint code base**ジョブをクリックしてください。 ![Lint コードベースジョブ](/assets/images/help/repository/superlinter-lint-code-base-job-updated.png)
-{% else %}
-1. 左サイドバーで、[**Lint code base**] をクリックします。 ![Lint コードベースジョブ](/assets/images/help/repository/superlinter-lint-code-base-job.png)
-{% endif %}
-{% data reusables.repositories.view-failed-job-results-superlinter %}
+1. 左のサイドバーで、表示させたいワークフローをクリックしてください。
+
+   ![左サイドバーのワークフローのリスト](/assets/images/help/repository/actions-quickstart-workflow-sidebar.png)
+1. ワークフローの実行リストから、表示させたい実行の名前をクリックしてください。
+
+   ![ワークフローの実行の名前](/assets/images/help/repository/actions-quickstart-run-name.png)
+1. [**Jobs**] で [**Explore-GitHub-Actions**] ジョブをクリックします。
+
+   ![ジョブを探す](/assets/images/help/repository/actions-quickstart-job.png)
+1. ログには、各ステップの処理方法が表示されます。 いずれかのステップを展開して、詳細を表示します。
+
+   ![ワークフロー結果の例](/assets/images/help/repository/actions-quickstart-logs.png)
+
+   たとえば、リポジトリ内のファイルのリストを確認できます。 ![アクションの詳細の例](/assets/images/help/repository/actions-quickstart-log-detail.png)
 
 ### さらなるワークフローテンプレート
 
@@ -77,74 +78,12 @@ topics:
 
 ### 次のステップ
 
-追加した super-linter ワークフローは、コードがリポジトリにプッシュされるたびに実行され、コードのエラーや不整合を見つけます。 ただし、これは {% data variables.product.prodname_actions %} でできることの一部にすぎません。 リポジトリには、さまざまなイベントに基づいてさまざまなジョブをトリガーする複数のワークフローを含めることができます。 {% data variables.product.prodname_actions %} は、アプリケーション開発プロセスのほぼすべての要素を自動化するのに役立ちます。 始める準備はできましたか？ {% data variables.product.prodname_actions %} で次のステップに進む際に役立つ、以下のようなリソースを参照してください。
+追加したワークフロー例では、コードがブランチにプッシュされるたびに実行され、{% data variables.product.prodname_actions %} がリポジトリのコンテンツを処理できる方法が示されます。 ただし、これは {% data variables.product.prodname_actions %} で可能なことの一部にすぎません。
 
-- 詳細なチュートリアルは、「[{% data variables.product.prodname_actions %}を学ぶ](/actions/learn-github-actions)」をご覧ください
-- 特定の使用例とサンプルについては、「[ガイド](/actions/guides)」
-- Super-Linter アクションの設定の詳細については、[github/super-linter](https://github.com/github/super-linter)
+- リポジトリには、さまざまなイベントに基づいてさまざまなジョブをトリガーする複数のワークフローを含めることができます。
+- ワークフローを使用してソフトウェアテストアプリをインストールし、{% data variables.product.prodname_dotcom %} のランナーでコードを自動的にテストすることができます。
 
-<div id="quickstart-treatment" hidden>
+{% data variables.product.prodname_actions %} は、アプリケーション開発プロセスのほぼすべての要素を自動化するのに役立ちます。 始める準備はできましたか？ {% data variables.product.prodname_actions %} で次のステップに進む際に役立つ、以下のようなリソースを参照してください。
 
-### はじめに
-
-"Hello, World!"を出力するのは、基本的なセットアップと新しいプログラミング言語の構文を探るための素晴らしい方法です。 このガイドでは、GitHub Actionsを使って{% data variables.product.prodname_dotcom %}リポジトリのワークフローログに"Hello, World!"と出力します。 始めるのに必要なものは、サンプルの{% data variables.product.prodname_actions %}ワークフローを快適に作成して実行できそうな{% data variables.product.prodname_dotcom %}リポジトリだけです。 このクイックスタート用の新しいリポジトリを自由に作成して、現在および将来の {% data variables.product.prodname_actions %} ワークフローをテストできます。
-
-### 最初のワークフローの作成
-
-1. {% data variables.product.prodname_dotcom %}のリポジトリから、`.github/workflows`ディレクトリ内に`hello-world.yml`という名前で新しいファイルを作成してください。 詳しい情報については「[新しいファイルの作成](/github/managing-files-in-a-repository/creating-new-files)」を参照してください。
-2. 以下のYAMLの内容を`hello-world.yml`ファイルにコピーしてください。
-    {% raw %}
-    ```yaml{:copy}
-    name: Say hello!
-
-    # GitHub Actionsのワークフローは、GitHubのイベントで自動的にトリガーされます
-    on:
-      # このワークフローではworkflow_dispatchイベントを使います。これは、ユーザがGitHub ActionsのUIでRun workflowをクリックしたときにトリガーされます
-      workflow_dispatch:
-        # workflow_dispatchイベントはオプションの入力を受け付けるので、ワークフローの振る舞いをカスタマイズできます
-        inputs:
-          name:
-            description: 'Person to greet'
-            required: true
-            default: 'World'
-    # イベントがトリガーされると、GitHub Actionsは示されたジョブを実行します
-    jobs:
-      say_hello:
-        # ubuntu-latesランナーを使ってリクエストされたステップを完了させます
-        runs-on: ubuntu-latest
-        steps:
-        - run: |
-            echo "Hello ${{ github.event.inputs.name }}!"
-    ```
-    {% endraw %}
-3. ページの下部までスクロールして、**Create a new branch for this commit and start a pull request（このコミットに新しいブランチを作成してPull Requestを開始）**を選択してください。 そして、Pull Requestを作成するために**Propose new file（新しいファイルを提案）**をクリックしてください。
-    ![ワークフローファイルのコミット](/assets/images/help/repository/commit-hello-world-file.png)
-4. Pull Requestがマージされたら、"Trigger your workflow（ワークフローをトリガー）"に移動する準備ができます。
-
-### ワークフローのトリガー
-
-{% data reusables.repositories.navigate-to-repo %}
-{% data reusables.repositories.actions-tab %}
-1. 左のサイドバーで、実行したいワークフローをクリックしてください。
-   ![say helloジョブの選択](/assets/images/help/repository/say-hello-job.png)
-1. 右側で**Run workflow（ワークフローを実行）**ドロップダウンをクリックし、**Run workflow（ワークフローを実行）**をクリックしてください。 あるいは、ワークフローを実行する前にカスタムメッセージを"Person to greet"インプットに入力することもできます。
-   ![手動のワークフローをトリガー](/assets/images/help/repository/manual-workflow-trigger.png)
-1. ワークフローの実行は、"Say hello!"ワークフローの実行リストの先頭に表示されます。 ワークフローの実行結果を見るには、"Say hello!"をクリックしてください。
-   ![ワークフローの実行結果のリスト](/assets/images/help/repository/workflow-run-listing.png)
-1. 左のサイドバーで、"say_hello"ジョブをクリックしてください。
-   ![ワークフロージョブのリスト](/assets/images/help/repository/workflow-job-listing.png)
-1. ワークフローのログ中で、'Run echo "Hello World!"'セクションを展開してください。
-   ![Workflow detail](/assets/images/help/repository/workflow-log-listing.png)
-
-### その他のワークフローテンプレート
-
-{% data reusables.actions.workflow-template-overview %}
-
-### 次のステップ
-
-追加した hello-world ワークフローは、手動でトリガーされるワークフローの最小限の例です。 これは、{% data variables.product.prodname_actions %}でできることのほんの手始めに過ぎません。 リポジトリには、さまざまなイベントに基づいてさまざまなジョブをトリガーする複数のワークフローを含めることができます。 {% data variables.product.prodname_actions %} は、アプリケーション開発プロセスのほぼすべての要素を自動化するのに役立ちます。 始める準備はできましたか？ 以下は、{% data variables.product.prodname_actions %}で次のステップへ進むのに役立つリソースです。
-
-- 詳細なチュートリアルとして「[{% data variables.product.prodname_actions %}を学ぶ](/actions/learn-github-actions)」
-- 特定のユースケースや例のための「[Guides](/actions/guides)」
-
-</div>
+- 詳細なチュートリアルは、「[{% data variables.product.prodname_actions %} を学ぶ](/actions/learn-github-actions)」をご覧ください。
+- 特定の使用例とサンプルについては「[ガイド](/actions/guides)」をご覧ください。

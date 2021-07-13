@@ -6,9 +6,14 @@ redirect_from:
   - /enterprise/admin/enterprise-management/creating-a-high-availability-replica
 versions:
   enterprise-server: '*'
+type: how_to
 topics:
-  - корпоративный
+  - Enterprise
+  - High availability
+  - Infrastructure
 ---
+
+{% data reusables.enterprise_installation.replica-limit %}
 
 ### Creating a high availability replica
 

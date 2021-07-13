@@ -35,7 +35,7 @@ Repository owners and people with write access can enable {% data variables.prod
 
 コントリビューションガイドラインを設定して、コラボレータがリポジトリについて有意義で有用な会話を行うよう促すことができます。 リポジトリの README を更新して、コラボレータが Issue やディスカッションをオープンするタイミングを伝えることもできます。
 
-プロジェクトのガイドラインの提供方法の詳細については、「[プロジェクトに行動規範を追加する](/github/building-a-strong-community/adding-a-code-of-conduct-to-your-project)」および 「[健全なコントリビューションのためのプロジェクトの設定](/github/building-a-strong-community/setting-up-your-project-for-healthy-contributions)」を参照してください。
+プロジェクトのガイドラインの提供方法の詳細については、「[プロジェクトに行動規範を追加する](/communities/setting-up-your-project-for-healthy-contributions/adding-a-code-of-conduct-to-your-project)」および 「[健全なコントリビューションのためのプロジェクトの設定](/communities/setting-up-your-project-for-healthy-contributions)」を参照してください。
 
 ### 新しいディスカッションを作成する
 
@@ -43,9 +43,11 @@ Repository owners and people with write access can enable {% data variables.prod
 
 {% data reusables.discussions.starting-a-discussion %}
 
-### ディスカッションを関連するカテゴリに整理する
+### Organizing discussions
 
 リポジトリの所有者と書き込みアクセス権を持つユーザは、新しいカテゴリを作成してディスカッションを整理できます。 参加しているコラボレータが新しいディスカッションを作成する場合、ディスカッションを最も関連性の高い既存のカテゴリにグループ化できます。 ディスカッションは、作成後に再分類することもできます。 詳しい情報については、「[リポジトリ内のディスカッションのカテゴリを管理する](/discussions/managing-discussions-for-your-community/managing-categories-for-discussions-in-your-repository)」を参照してください。
+
+{% data reusables.discussions.you-can-label-discussions %}
 
 ### 健全な会話を促進する
 

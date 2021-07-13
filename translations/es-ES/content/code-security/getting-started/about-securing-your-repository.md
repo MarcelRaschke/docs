@@ -8,7 +8,7 @@ versions:
   enterprise-server: '>=3.0'
   github-ae: '*'
 topics:
-  - repositories
+  - Repositories
 ---
 
 ### Configurar tu repositorio de forma segura
@@ -22,11 +22,13 @@ El primer paso para asegurar un repositorio es configurar quién puede ver y mod
 {% if currentVersion == "free-pro-team@latest" or currentVersion ver_gt "enterprise-server@2.22" %}
 #### Disponible para todos los repositorios
 
-{% if currentVersion == "free-pro-team@latest" %}
+{% if currentVersion == "free-pro-team@latest" or currentVersion ver_gt "enterprise-server@3.0" or currentVersion == 'github-ae@next' %}
 - **Política de seguridad**
 
-  Facilítale a las personas el poder reportar de forma confidencial las vulnerabilidades de seguridad que hayan encontrado en tu repositorio. Para obtener más información, consulta "[Aumentar la seguridad para tu repositorio](/github/managing-security-vulnerabilities/adding-a-security-policy-to-your-repository)".
+  Make it easy for your users to confidentially report security vulnerabilities they've found in your repository. Para obtener más información, consulta "[Aumentar la seguridad para tu repositorio](/code-security/getting-started/adding-a-security-policy-to-your-repository)".
+{% endif %}
 
+{% if currentVersion == "free-pro-team@latest" %}
 - **Asesorías de seguridad**
 
   Debate en privado y arregla las vulnerabilidades de seguridad en el código de tu repositorio. Puedes entonces publicar la asesoría de seguridad para alertar a tu comunidad sobre la vulnerabilidad en cuestión y alentarlos a mejorar la versión que tienen actualmente. Para obtener más información, consulta la sección "[Acerca de{% data variables.product.prodname_security_advisories %}](/github/managing-security-vulnerabilities/about-github-security-advisories)".
@@ -61,14 +63,14 @@ Estas características están disponibles {% if currentVersion == "free-pro-team
 
   Detecta automáticamente las vulnerabilidades de seguridad y los errores de código en el código nuevo o modificado. Se resaltan los problemas potenciales, con información detallada, lo cual te permite arreglar el código antes de que se fusione en tu rama predeterminada. Para obtener más información, consulta la sección "[Acerca del escaneo de código"](/github/finding-security-vulnerabilities-and-errors-in-your-code/about-code-scanning).
 
-- **Secretos detectados**
+- **alertas del {% data variables.product.prodname_secret_scanning_caps %}**
 
   {% if currentVersion == "free-pro-team@latest" %}Para los repositorios privados, ve {% else %}Ve {% endif %}cualquier secreto que {% data variables.product.prodname_dotcom %} haya encontrado en tu código. Deberías tratar a los tokens o las credenciales que se hayan registrado en tu repositorio como puestos en riesgo. Para obtener más información, consulta la sección "[Acerca del escaneo de secretos"](/github/administering-a-repository/about-secret-scanning).
 
 {% endif %}
 
 {% if currentVersion == "free-pro-team@latest" %}
-- **Revisión de dependencias** - Muestra todo el impacto de los cambios a las dependencias y vee los detalles de las versiones vulnerables antes de que fusiones una solicitud de cambios. For more information, see "[About dependency review](/code-security/supply-chain-security/about-dependency-review)."
+- **Revisión de dependencias** - Muestra todo el impacto de los cambios a las dependencias y vee los detalles de las versiones vulnerables antes de que fusiones una solicitud de cambios. Para obtener más información, consulta la sección "[Acerca de la revisión de dependencias](/code-security/supply-chain-security/about-dependency-review)".
 {% endif %}
 
 {% if currentVersion != "github-ae@latest" %}

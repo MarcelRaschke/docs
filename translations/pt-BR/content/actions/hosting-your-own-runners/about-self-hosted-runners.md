@@ -65,6 +65,7 @@ Existem alguns limites sobre o uso de {% data variables.product.prodname_actions
 - **Tempo de fila de tarefas** - Cada trabalho para executores auto-hospedados pode ser enfileirado por um máximo de 24 horas. Se um executor auto-hospedado não começar a executar a tarefa dentro deste limite, a tarefa será encerrada e não será concluída.
 {% data reusables.github-actions.usage-api-requests %}
 - **Matriz de vagas** - {% data reusables.github-actions.usage-matrix-limits %}
+{% data reusables.github-actions.usage-workflow-queue-limits %}
 
 ### Continuidade do fluxo de trabalho para executores auto-hospedados
 
@@ -76,8 +77,8 @@ Os sistemas operacionais a seguir são compatíveis com o aplicativo de execuç�
 
 #### Linux
 
-- Red Hat Enterprise Linux 7
-- CentOS 7
+- Red Hat Enterprise Linux 7 ou posterior
+- CentOS 7 ou posterior
 - Oracle Linux 7
 - Fedora 29 ou versão posterior
 - Debian 9 ou versão posterior
@@ -125,7 +126,7 @@ URL de {% data variables.product.prodname_ghe_managed %}.
 Por exemplo, se o nome da sua instância for `octoghae`, você precisará permitir que o executor auto-hospedado acesse `octoghae.github.com`.
 Se você usa uma lista de endereços IP para a
 
-conta da sua organização ou empresa de {% data variables.product.prodname_dotcom %}, você deverá adicionar o endereço IP do seu executor auto-hospedado à lista de permissão. Para obter mais informações, consulte "[Gerenciar endereços IP permitidos para a sua organização](/github/setting-up-and-managing-organizations-and-teams/managing-allowed-ip-addresses-for-your-organization#using-github-actions-with-an-ip-allow-list)".
+conta da sua organização ou empresa de {% data variables.product.prodname_dotcom %}, você deverá adicionar o endereço IP do seu executor auto-hospedado à lista de permissão. Para obter mais informações, consulte "[Gerenciar endereços IP permitidos para a sua organização](/organizations/keeping-your-organization-secure/managing-allowed-ip-addresses-for-your-organization#using-github-actions-with-an-ip-allow-list)".
 {% endif %}
 
 {% if currentVersion == "free-pro-team@latest" %}
@@ -145,7 +146,7 @@ pkg-containers.githubusercontent.com
 pkg-containers-az.githubusercontent.com
 ```
 
-Se você usar uma lista de endereços IP permitida para a sua a sua organização ou conta corporativa do {% data variables.product.prodname_dotcom %}, você deverá adicionar o endereço IP do executor auto-hospedado à lista de permissões. Para obter mais informações consulte "[Gerenciar endereços IP permitidos para a sua organização](/github/setting-up-and-managing-organizations-and-teams/managing-allowed-ip-addresses-for-your-organization#using-github-actions-with-an-ip-allow-list)" ou "[Aplicar as configurações de segurança na sua conta corporativa](/github/setting-up-and-managing-your-enterprise/enforcing-security-settings-in-your-enterprise-account#using-github-actions-with-an-ip-allow-list)".
+Se você usar uma lista de endereços IP permitida para a sua a sua organização ou conta corporativa do {% data variables.product.prodname_dotcom %}, você deverá adicionar o endereço IP do executor auto-hospedado à lista de permissões. Para obter mais informações consulte "[Gerenciar endereços IP permitidos para a sua organização](/organizations/keeping-your-organization-secure/managing-allowed-ip-addresses-for-your-organization#using-github-actions-with-an-ip-allow-list)" ou "[Aplicar as configurações de segurança na sua conta corporativa](/github/setting-up-and-managing-your-enterprise/enforcing-security-settings-in-your-enterprise-account#using-github-actions-with-an-ip-allow-list)".
 
 {% else %}
 

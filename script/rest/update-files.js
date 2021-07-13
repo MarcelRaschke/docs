@@ -23,7 +23,7 @@ program
   .option('--decorate-only', '⚠️ Only used by a 🤖 to generate decorated schema files from existing dereferenced schema files.')
   .parse(process.argv)
 
-const decorateOnly = program.decorateOnly
+const decorateOnly = program.opts().decorateOnly
 
 main()
 
@@ -59,7 +59,7 @@ async function getDereferencedFiles () {
 
   console.log(`\n🏃‍♀️🏃🏃‍♀️Running \`bin/openapi bundle\` in branch '${githubBranch}' of your github/github checkout to generate the dereferenced OpenAPI schema files.\n`)
   try {
-    execSync(`${path.join(githubRepoDir, 'bin/openapi')} bundle -o ${tempDocsDir}`, { stdio: 'inherit' })
+    execSync(`${path.join(githubRepoDir, 'bin/openapi')} bundle -o ${tempDocsDir} --include_unpublished`, { stdio: 'inherit' })
   } catch (error) {
     console.error(error)
     console.log('🛑 Whoops! It looks like the `bin/openapi bundle` command failed to run in your `github/github` repository checkout. To troubleshoot, ensure that your OpenAPI schema YAML is formatted correctly. A CI test runs on your `github/github` PR that flags malformed YAML. You can check the PR diff view for comments left by the openapi CI test to find and fix any formatting errors.')
@@ -75,7 +75,7 @@ async function getDereferencedFiles () {
   // name of the `github/github` checkout. A CI test
   // checks the version and fails if it's not a semantic version.
   schemas.forEach(filename => {
-    const schema = require(path.join(dereferencedPath, filename))
+    const schema = JSON.parse(fs.readFileSync(path.join(dereferencedPath, filename)))
     schema.info.version = `${githubBranch} !!DEVELOPMENT MODE - DO NOT MERGE!!`
     fs.writeFileSync(path.join(dereferencedPath, filename), JSON.stringify(schema, null, 2))
   })
@@ -85,7 +85,7 @@ async function decorate () {
   console.log('\n🎄 Decorating the OpenAPI schema files in lib/rest/static/dereferenced.\n')
 
   const dereferencedSchemas = schemas.reduce((acc, filename) => {
-    const schema = require(path.join(dereferencedPath, filename))
+    const schema = JSON.parse(fs.readFileSync(path.join(dereferencedPath, filename)))
     const key = filename.replace('.deref.json', '')
     return { ...acc, [key]: schema }
   }, {})

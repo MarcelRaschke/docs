@@ -9,7 +9,7 @@ versions:
   enterprise-server: '>=2.22'
   github-ae: '*'
 topics:
-  - facturación
+  - Billing
 ---
 
 {% data reusables.actions.enterprise-beta %}
@@ -19,7 +19,7 @@ topics:
 ### Acerca de la facturación para {% data variables.product.prodname_actions %}
 
 {% if currentVersion == "free-pro-team@latest" %}
-{% data reusables.github-actions.actions-billing %} Para obtener más información, consulta "[Acerca de la facturación de {% data variables.product.prodname_actions %}](/github/setting-up-and-managing-billing-and-payments-on-github/about-billing-for-github-actions)".
+{% data reusables.github-actions.actions-billing %} Para obtener más información, consulta "[Acerca de la facturación de {% data variables.product.prodname_actions %}](/billing/managing-billing-for-github-actions/about-billing-for-github-actions)".
 {% else %}
 El uso de GitHub Actions es gratuito para
 las {% data variables.product.prodname_ghe_server %} que utilicen ejecutores auto-hospedados.
@@ -49,6 +49,8 @@ el uso de {% data variables.product.prodname_actions %} cuando se utilizan ejecu
   | Team           | 60                       | 5                                 |
   | Empresa        | 180                      | 50                                |
 - **Matiz de jobs** - {% data reusables.github-actions.usage-matrix-limits %}
+{% data reusables.github-actions.usage-workflow-queue-limits %}
+
 {% else %}
 Los límites de uso aplican a los ejecutores auto-hospedados. Para obtener más información, consulta "[Acerca de los ejecutores autoalojados](/actions/hosting-your-own-runners/about-self-hosted-runners/#usage-limits)."
 {% endif %}
@@ -70,7 +72,7 @@ Puedes configurar el periodo de retenciòn de artefactos y bitàcoras para tu re
 Para obtener más información, consulta:
 
 - [Configurar el periodo de retenciòn de las {% data variables.product.prodname_actions %} para los artefactos y bitàcoras en tu repositorio](/github/administering-a-repository/configuring-the-retention-period-for-github-actions-artifacts-and-logs-in-your-repository)
-- [Configurar el periodo de retenciòn de las {% data variables.product.prodname_actions %} para los artefactos y bitàcoras en tu organizaciòn](/github/setting-up-and-managing-organizations-and-teams/configuring-the-retention-period-for-github-actions-artifacts-and-logs-in-your-organization)
+- [Configurar el periodo de retenciòn de las {% data variables.product.prodname_actions %} para los artefactos y bitàcoras en tu organizaciòn](/organizations/managing-organization-settings/configuring-the-retention-period-for-github-actions-artifacts-and-logs-in-your-organization)
 - [Configurar el periodo de retenciòn de las {% data variables.product.prodname_actions %} para los artefactos y bitàcoras en tu empresa](/github/setting-up-and-managing-your-enterprise/configuring-the-retention-period-for-github-actions-artifacts-and-logs-in-your-enterprise-account)
 {% endif %}
 
@@ -80,7 +82,7 @@ Para obtener más información, consulta:
 
 Para obtener más información, consulta:
 - "[Inhabilitar o limitar {% data variables.product.prodname_actions %} para un repositorio](/github/administering-a-repository/disabling-or-limiting-github-actions-for-a-repository)"
-- "[Inhabilitar o limitar {% data variables.product.prodname_actions %} para tu organización](/github/setting-up-and-managing-organizations-and-teams/disabling-or-limiting-github-actions-for-your-organization)"{% if currentVersion == "free-pro-team@latest" %}
+- "[Inhabilitar o limitar {% data variables.product.prodname_actions %} para tu organización](/organizations/managing-organization-settings/disabling-or-limiting-github-actions-for-your-organization)"{% if currentVersion == "free-pro-team@latest" %}
 - "[Requerir políticas de {% data variables.product.prodname_actions %} en tu cuenta empresarial](/github/setting-up-and-managing-your-enterprise/enforcing-github-actions-policies-in-your-enterprise-account)" para {% data variables.product.prodname_ghe_cloud %}{% endif %}
 
 {% if currentVersion == "free-pro-team@latest" or currentVersion ver_gt "enterprise-server@2.22" or currentVersion == "github-ae@latest" %}

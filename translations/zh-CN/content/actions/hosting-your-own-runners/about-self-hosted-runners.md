@@ -65,6 +65,7 @@ type: overview
 - **作业排队时间** - 自托管运行器的每个作业最多可排队 24 小时。 如果自托管运行器在此限制内没有开始执行作业，则作业将被终止，并且无法完成。
 {% data reusables.github-actions.usage-api-requests %}
 - **作业矩阵** - {% data reusables.github-actions.usage-matrix-limits %}
+{% data reusables.github-actions.usage-workflow-queue-limits %}
 
 ### 自托管运行器的工作流连续性
 
@@ -76,8 +77,8 @@ type: overview
 
 #### Linux
 
-- Red Hat Enterprise Linux 7
-- CentOS 7
+- Red Hat Enterprise Linux 7 或更新版本
+- CentOS 7 或更新版本
 - Oracle Linux 7
 - Fedora 29 或更高版本
 - Debian 9 或更高版本
@@ -125,7 +126,7 @@ type: overview
 例如，如果你的实例名称是 `octoghie`，则需要允许自托管运行器访问 `octoghe. ithub.com`。
 如果您对
 
-{% data variables.product.prodname_dotcom %} 组织或企业帐户使用 IP 地址允许列表，必须将自托管运行器的 IP 地址添加到允许列表。 更多信息请参阅“[管理组织允许的 IP 地址](/github/setting-up-and-managing-organizations-and-teams/managing-allowed-ip-addresses-for-your-organization#using-github-actions-with-an-ip-allow-list)”。
+{% data variables.product.prodname_dotcom %} 组织或企业帐户使用 IP 地址允许列表，必须将自托管运行器的 IP 地址添加到允许列表。 更多信息请参阅“[管理组织允许的 IP 地址](/organizations/keeping-your-organization-secure/managing-allowed-ip-addresses-for-your-organization#using-github-actions-with-an-ip-allow-list)”。
 {% endif %}
 
 {% if currentVersion == "free-pro-team@latest" %}
@@ -145,7 +146,7 @@ pkg-containers.githubusercontent.com
 pkg-containers-az.githubusercontent.com
 ```
 
-如果您对 {% data variables.product.prodname_dotcom %} 组织或企业帐户使用 IP 地址允许列表，必须将自托管运行器的 IP 地址添加到允许列表。 更多信息请参阅“[管理组织允许的 IP 地址](/github/setting-up-and-managing-organizations-and-teams/managing-allowed-ip-addresses-for-your-organization#using-github-actions-with-an-ip-allow-list)”或“[在企业帐户中实施安全设置](/github/setting-up-and-managing-your-enterprise/enforcing-security-settings-in-your-enterprise-account#using-github-actions-with-an-ip-allow-list)”。
+如果您对 {% data variables.product.prodname_dotcom %} 组织或企业帐户使用 IP 地址允许列表，必须将自托管运行器的 IP 地址添加到允许列表。 更多信息请参阅“[管理组织允许的 IP 地址](/organizations/keeping-your-organization-secure/managing-allowed-ip-addresses-for-your-organization#using-github-actions-with-an-ip-allow-list)”或“[在企业帐户中实施安全设置](/github/setting-up-and-managing-your-enterprise/enforcing-security-settings-in-your-enterprise-account#using-github-actions-with-an-ip-allow-list)”。
 
 {% else %}
 

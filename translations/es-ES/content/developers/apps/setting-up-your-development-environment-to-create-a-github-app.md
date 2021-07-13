@@ -8,7 +8,7 @@ versions:
   enterprise-server: '*'
   github-ae: '*'
 topics:
-  - github apps
+  - GitHub Apps
 ---
 
 
@@ -139,7 +139,7 @@ Después de que creas tu app, se te llevará de regreso a la [página de configu
 
 ### Paso 4. Prepara el ambiente de ejecución
 
-Para mantener tu información segura, te recomendamos poner todos los secretos relacionados con tu app en la memoria de tu ordenador en donde tu app pueda encontrarlos, en vez de ponerlos directamente en tu código. Esta útil herramienta de desarrollo llamada [dotenv](https://github.com/bkeepers/dotenv) carga las variables de ambiente específicas del proyecto desde un archivo `.env` hacia `ENV`. Jamás ingreses tu archivo `.env` en GitHub. Este es un archivo local que almacena la información sensible que no quieres sacar al internet público. The `.env` file is already included in the repository's [`.gitignore`](/github/getting-started-with-github/ignoring-files/) file to prevent that.
+Para mantener tu información segura, te recomendamos poner todos los secretos relacionados con tu app en la memoria de tu ordenador en donde tu app pueda encontrarlos, en vez de ponerlos directamente en tu código. Esta útil herramienta de desarrollo llamada [dotenv](https://github.com/bkeepers/dotenv) carga las variables de ambiente específicas del proyecto desde un archivo `.env` hacia `ENV`. Jamás ingreses tu archivo `.env` en GitHub. Este es un archivo local que almacena la información sensible que no quieres sacar al internet público. El archivo `.env` ya se incluye en el archivo [`.gitignore`](/github/getting-started-with-github/ignoring-files/) del repositorio para prevenir esto.
 
 El código de la plantilla que descargaste en la [Sección de pre-requisitos](#prerequisites) ya tiene un archivo de ejemplo llamado `.env-example`. Renombra el archivo de ejemplo de `.env-example` a `.env` o crea una copia del archivo `.env-example` llamada `.env`. No has instalado dotenv aún, pero lo instalarás más adelante en esta guía de inicio rápido cuando ejecutes `bundle install`. **Nota:** Las guías de inicio rápido que hagan referencia a los pasos en ésta guía podrían incluir variables de ambiente adicionales en el archivo `.env-example`. Referencia la guía de inicio rápido para el proyecto que clonaste en GitHub para obtener orientación para configurar estas variables de ambiente adicionales.
 
@@ -370,10 +370,10 @@ Después de que des clic en **Instalar**, revisa la salida en tu terminal. Deber
 ```shell
 > D, [2018-06-29T15:45:43.773077 #30488] DEBUG -- : ---- received event integration_installation
 > D, [2018-06-29T15:45:43.773141 #30488] DEBUG -- : ----         action created
-> 192.30.252.44 - - [29/Jun/2018:15:45:43 -0400] "POST / HTTP/1.1" 200 2 0.0067
+> 192.30.252.44 - - [29/Jun/2018:15:45:43 -0400] "POST / HTTP/2" 200 2 0.0067
 > D, [2018-06-29T15:45:43.833016 #30488] DEBUG -- : ---- received event installation
 > D, [2018-06-29T15:45:43.833062 #30488] DEBUG -- : ----         action created
-> 192.30.252.39 - - [29/Jun/2018:15:45:43 -0400] "POST / HTTP/1.1" 200 2 0.0019
+> 192.30.252.39 - - [29/Jun/2018:15:45:43 -0400] "POST / HTTP/2" 200 2 0.0019
 ```
 
 ¡Estas son buenas noticias! Esto significa que tu app recibió una notificación de que se instaló en tu cuenta de GitHub. Si ves algo como esto, tu app está ejecutándose en el servidor como lo esperabas. 🙌

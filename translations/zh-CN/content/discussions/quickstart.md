@@ -35,7 +35,7 @@ versions:
 
 您可以设置参与指南，以鼓励协作者进行与仓库相关的有意义、有用的对话。 您还可以更新仓库的 README，以传达协作者何时应打开问题或讨论的期望。
 
-有关为项目提供指南的更多信息，请参阅“[为项目添加行为准则](/github/building-a-strong-community/adding-a-code-of-conduct-to-your-project)”和“[设置健康参与的项目](/github/building-a-strong-community/setting-up-your-project-for-healthy-contributions)”。
+有关为项目提供指南的更多信息，请参阅“[为项目添加行为准则](/communities/setting-up-your-project-for-healthy-contributions/adding-a-code-of-conduct-to-your-project)”和“[设置健康参与的项目](/communities/setting-up-your-project-for-healthy-contributions)”。
 
 ### 创建新讨论
 
@@ -43,9 +43,11 @@ versions:
 
 {% data reusables.discussions.starting-a-discussion %}
 
-### 将讨论组织到相关类别
+### 组织讨论
 
 仓库所有者和具有写入权限的人可以创建新类别来保持讨论井然有序。 参与和创建新讨论的协作者可以将讨论分组到最相关的现有类别。 讨论也可以在创建后重新分类。 更多信息请参阅“[管理仓库中讨论的类别](/discussions/managing-discussions-for-your-community/managing-categories-for-discussions-in-your-repository)”。
+
+{% data reusables.discussions.you-can-label-discussions %}
 
 ### 促进健康的对话
 

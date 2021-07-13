@@ -8,7 +8,7 @@ versions:
   enterprise-server: '*'
   github-ae: '*'
 topics:
-  - api
+  - API
 ---
 
 {% for operation in currentRestOperations %}
@@ -155,7 +155,8 @@ topics:
 {% if currentVersion == "free-pro-team@latest" or currentVersion ver_gt "enterprise-server@3.1" or currentVersion == "github-ae@next" %}
 ## 环境
 
-环境 API 允许您创建、配置和删除环境。 有关环境的更多信息，请参阅“[环境](/actions/reference/environments)”。
+环境 API 允许您创建、配置和删除环境。 有关环境的更多信息，请参阅“[环境](/actions/reference/environments)”。 要管理环境密码，请参阅“[密码](/rest/reference/actions#secrets)”。
+
 {% for operation in currentRestOperations %}
   {% if operation.subcategory == 'environments' %}{% include rest_operation %}{% endif %}
 {% endfor %}
@@ -193,7 +194,7 @@ topics:
 
 ## 页面
 
-{% data variables.product.prodname_pages %} API 可检索关于您的 {% data variables.product.prodname_pages %} 配置以及构建状态的信息。 只有经过验证的所有者才能访问有关网站和构建的信息{% if currentVersion != "github-ae@latest" %}，即使网站是公开的也一样{% endif %}。 更多信息请参阅“[关于 {% data variables.product.prodname_pages %}](/github/working-with-github-pages/about-github-pages)”。
+{% data variables.product.prodname_pages %} API 可检索关于您的 {% data variables.product.prodname_pages %} 配置以及构建状态的信息。 只有经过验证的所有者才能访问有关网站和构建的信息{% if currentVersion != "github-ae@latest" %}，即使网站是公开的也一样{% endif %}。 更多信息请参阅“[关于 {% data variables.product.prodname_pages %}](/pages/getting-started-with-github-pages/about-github-pages)”。
 
 在其响应中包含 `status` 键的 {% data variables.product.prodname_pages %} API 端点中，其值可能是以下值之一：
 * `null`：站点尚未构建。
@@ -205,7 +206,7 @@ topics:
 在返回 GitHub Pages 站点信息的 {% data variables.product.prodname_pages %} API 端点中，JSON 响应包括以下字段：
 * `html_url`：所渲染的 Pages 站点的绝对 URL（包括模式）。 例如，`https://username.github.io`。
 * `source`：包含所渲染 Pages 站点的源分支和目录的对象。 这包括：
-   - `branch`：用于发布[站点源文件](/github/working-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site)的仓库分支。 例如，_main_ 或 _gh-pages_。
+   - `branch`：用于发布[站点源文件](/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site)的仓库分支。 例如，_main_ 或 _gh-pages_。
    - `path`：提供站点发布内容的仓库目录。 可能是 `/` 或 `/docs`。
 
 {% for operation in currentRestOperations %}
@@ -337,9 +338,9 @@ PubSubHubbub 请求可以多次发送。 如果挂钩已经存在，它将根据
 
 ##### 参数
 
-| 名称             | 类型    | 描述                                                                                                                                                                                                         |
-| -------------- | ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `hub.mode`     | `字符串` | **必填**。 值为 `subscribe` 或 `unsubscribe`。                                                                                                                                                                    |
-| `hub.topic`    | `字符串` | **必填**。  要订阅的 GitHub 仓库的 URI。  路径格式必须为 `/{owner}/{repo}/events/{event}`。                                                                                                                                   |
-| `hub.callback` | `字符串` | 要接收主题更新的 URI。                                                                                                                                                                                              |
-| `hub.secret`   | `字符串` | 用于生成传出正文内容的 SHA1 HMAC 的共享密钥。  您可以通过将原始请求正文与 `X-Hub-Signature` 标头的内容进行比较来验证来自 GitHub 的推送。 您可以查看 [PubSubHubbub 文档](https://pubsubhubbub.github.io/PubSubHubbub/pubsubhubbub-core-0.4.html#authednotify)了解详情。 |
+| 名称             | 类型    | 描述                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| -------------- | ----- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `hub.mode`     | `字符串` | **必填**。 值为 `subscribe` 或 `unsubscribe`。                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| `hub.topic`    | `字符串` | **必填**。  要订阅的 GitHub 仓库的 URI。  路径格式必须为 `/{owner}/{repo}/events/{event}`。                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| `hub.callback` | `字符串` | 要接收主题更新的 URI。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| `hub.secret`   | `字符串` | 用于生成传出正文内容的哈希签名的共享密钥。  您可以通过比较原始请求正文与 {% if currentVersion == "free-pro-team@latest" or currentVersion ver_gt "enterprise-server@2.22" %}`X-Hub-Signature` 或 `X-Hub-Signature-256` 标头{% elsif currentVersion ver_lt "enterprise-server@2.23" %}`X-Hub-Signature` 标头{% elsif currentVersion == "github-ae@latest" %}`X-Hub-Signature-256` 标头{% endif %} 的内容来验证来自 GitHub 的推送。 您可以查看 [PubSubHubbub 文档](https://pubsubhubbub.github.io/PubSubHubbub/pubsubhubbub-core-0.4.html#authednotify)了解详情。 |

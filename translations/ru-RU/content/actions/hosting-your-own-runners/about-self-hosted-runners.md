@@ -65,6 +65,7 @@ There are some limits on {% data variables.product.prodname_actions %} usage whe
 - **Job queue time** - Each job for self-hosted runners can be queued for a maximum of 24 hours. If a self-hosted runner does not start executing the job within this limit, the job is terminated and fails to complete.
 {% data reusables.github-actions.usage-api-requests %}
 - **Job matrix** - {% data reusables.github-actions.usage-matrix-limits %}
+{% data reusables.github-actions.usage-workflow-queue-limits %}
 
 ### Workflow continuity for self-hosted runners
 
@@ -76,8 +77,8 @@ The following operating systems are supported for the self-hosted runner applica
 
 #### Linux
 
-- Red Hat Enterprise Linux 7
-- CentOS 7
+- Red Hat Enterprise Linux 7 or later
+- CentOS 7 or later
 - Oracle Linux 7
 - Fedora 29 or later
 - Debian 9 or later
@@ -125,7 +126,7 @@ You must ensure that the self-hosted runner has appropriate network access to co
 For example, if your instance name is `octoghae`, then you will need to allow the self-hosted runner to access `octoghae.github.com`.
 If you use an IP address allow list for your
 
-{% data variables.product.prodname_dotcom %} organization or enterprise account, you must add your self-hosted runner's IP address to the allow list. For more information, see "[Managing allowed IP addresses for your organization](/github/setting-up-and-managing-organizations-and-teams/managing-allowed-ip-addresses-for-your-organization#using-github-actions-with-an-ip-allow-list)."
+{% data variables.product.prodname_dotcom %} organization or enterprise account, you must add your self-hosted runner's IP address to the allow list. For more information, see "[Managing allowed IP addresses for your organization](/organizations/keeping-your-organization-secure/managing-allowed-ip-addresses-for-your-organization#using-github-actions-with-an-ip-allow-list)."
 {% endif %}
 
 {% if currentVersion == "free-pro-team@latest" %}
@@ -145,7 +146,7 @@ pkg-containers.githubusercontent.com
 pkg-containers-az.githubusercontent.com
 ```
 
-If you use an IP address allow list for your {% data variables.product.prodname_dotcom %} organization or enterprise account, you must add your self-hosted runner's IP address to the allow list. For more information, see "[Managing allowed IP addresses for your organization](/github/setting-up-and-managing-organizations-and-teams/managing-allowed-ip-addresses-for-your-organization#using-github-actions-with-an-ip-allow-list)" or "[Enforcing security settings in your enterprise account](/github/setting-up-and-managing-your-enterprise/enforcing-security-settings-in-your-enterprise-account#using-github-actions-with-an-ip-allow-list)".
+If you use an IP address allow list for your {% data variables.product.prodname_dotcom %} organization or enterprise account, you must add your self-hosted runner's IP address to the allow list. For more information, see "[Managing allowed IP addresses for your organization](/organizations/keeping-your-organization-secure/managing-allowed-ip-addresses-for-your-organization#using-github-actions-with-an-ip-allow-list)" or "[Enforcing security settings in your enterprise account](/github/setting-up-and-managing-your-enterprise/enforcing-security-settings-in-your-enterprise-account#using-github-actions-with-an-ip-allow-list)".
 
 {% else %}
 

@@ -6,12 +6,12 @@ A tabela a seguir mostra, para cada gerenciador de pacotes:
 
 | Gerenciador de pacotes | Valor do YAML    | Versões compatíveis            | Repositórios privados | Private registries | Delegação |
 | ---------------------- | ---------------- | ------------------------------ |:---------------------:|:------------------:|:---------:|
-| bundler                | `bundler`        | v1                             |                       |       **✓**        |   **✓**   |
+| bundler                | `bundler`        | v1, v2                         |                       |       **✓**        |   **✓**   |
 | Cargo                  | `cargo`          | v1                             |         **✓**         |       **✓**        |           |
 | Composer               | `composer`       | v1, v2                         |         **✓**         |       **✓**        |           |
 | Docker                 | `docker`         | v1                             |         **✓**         |       **✓**        |           |
 | Hex                    | `mix`            | v1                             |                       |       **✓**        |           |
-| elm-package            | `elm`            | v0.18, v0.19                   |         **✓**         |       **✓**        |           |
+| elm-package            | `elm`            | v0.19                          |         **✓**         |       **✓**        |           |
 | git submodule          | `gitsubmodule`   | N/A (sem versão)               |         **✓**         |       **✓**        |           |
 | GitHub Actions         | `github-actions` | N/A (sem versão)               |         **✓**         |       **✓**        |           |
 | Módulos Go             | `gomod`          | v1                             |         **✓**         |       **✓**        |   **✓**   |
@@ -23,7 +23,7 @@ A tabela a seguir mostra, para cada gerenciador de pacotes:
 | pipenv                 | `pip`            | <= 2018.11.26                  |                       |       **✓**        |           |
 | pip-compile            | `pip`            | 5.5.0                          |                       |       **✓**        |           |
 | poetry                 | `pip`            | v1                             |                       |       **✓**        |           |
-| Terraform              | `terraform`      | <= 0.11                        |         **✓**         |       **✓**        |           |
+| Terraform              | `terraform`      | <= 0.15                        |         **✓**         |       **✓**        |           |
 | yarn                   | `npm`            | v1                             |         **✓**         |       **✓**        |           |
 
 [1] {% data variables.product.prodname_dependabot %} doesn't run Gradle but supports updates to the following files: `build.gradle` and `build.gradle.kts` (for Kotlin projects).

@@ -11,7 +11,7 @@ versions:
   enterprise-server: '*'
   github-ae: '*'
 topics:
-  - webhooks
+  - Webhooks
 ---
 
 
@@ -61,7 +61,7 @@ También, el `User-Agent` para las solicitudes tendrá el prefijo `GitHub-Hooksh
 #### Ejemplo de entrega
 
 ```shell
-> POST /payload HTTP/1.1
+> POST /payload HTTP/2
 
 > Host: localhost:4567
 > X-GitHub-Delivery: 72d3162e-cc78-11e3-81ab-4c9367dc0958{% if enterpriseServerVersions contains currentVersion or currentVersion == "github-ae@latest" %}
@@ -200,7 +200,9 @@ También, el `User-Agent` para las solicitudes tendrá el prefijo `GitHub-Hooksh
 
 Los eventos de webhook se desencadenan basándose en la especificidad del dominio que registres. Por ejemplo, si registras un subdominio (`https://subdomain.example.com`), entonces la única URL para el subdominio activarán este evento. Si registras un dominio (`https://example.com`) entonces las URL para el dominio y todos sus subdominios activarán este evento. Consulta la sección "[Crear un adjunto de contenido](/rest/reference/apps#create-a-content-attachment)" para crear un nuevo adjunto de contenido.
 
-Solo las {% data variables.product.prodname_github_app %}s podrán recibir este evento. Las {% data variables.product.prodname_github_app %}s deben tener el permiso `content_references` `write` para suscribirse a este evento.
+#### Disponibilidad
+
+- {% data variables.product.prodname_github_app %}s con el permiso `content_references:write`
 
 #### Ejemplo de carga útil del webhook
 
@@ -338,9 +340,63 @@ Solo las {% data variables.product.prodname_github_app %}s podrán recibir este 
 
 {{ webhookPayloadsForCurrentVersion.deployment_status }}
 
+{% if currentVersion == "free-pro-team@latest" %}
+### debate
+
+{% data reusables.webhooks.discussions-webhooks-beta %}
+
+Actividad relacionada con un debate. Para obtener más información, consulta la sección "[Utilizar la API de GraphQL para los debates](/graphql/guides/using-the-graphql-api-for-discussions)".
+#### Disponibilidad
+
+- Webhooks de repositorio
+- Webhooks de organización
+- Las {% data variables.product.prodname_github_app %}s con el permiso de `discussions`
+
+#### Objeto de carga útil del webhook
+
+| Clave    | Type        | Descripción                                                                                                                                                               |
+| -------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Acción` | `secuencia` | La acción realizada. Puede ser `created`, `edited`, `deleted`, `pinned`, `unpinned`, `locked`, `unlocked`, `transferred`, `category_changed`, `answered`, o `unanswered`. |
+{% data reusables.webhooks.discussion_desc %}
+{% data reusables.webhooks.repo_desc_graphql %}
+{% data reusables.webhooks.org_desc_graphql %}
+{% data reusables.webhooks.sender_desc %}
+
+#### Ejemplo de carga útil del webhook
+
+{{ webhookPayloadsForCurrentVersion.discussion.created }}
+
+### discussion_comment
+
+{% data reusables.webhooks.discussions-webhooks-beta %}
+
+La actividad relacionada con un comentario en un debate. Para obtener más información, consulta la sección "[Utilizar la API de GraphQL para los debates](/graphql/guides/using-the-graphql-api-for-discussions)".
+
+#### Disponibilidad
+
+- Webhooks de repositorio
+- Webhooks de organización
+- Las {% data variables.product.prodname_github_app %}s con el permiso de `discussions`
+
+#### Objeto de carga útil del webhook
+
+| Clave        | Type        | Descripción                                                                                                    |
+| ------------ | ----------- | -------------------------------------------------------------------------------------------------------------- |
+| `Acción`     | `secuencia` | La acción realizada. Puede ser `created`, `edited`, o `deleted`.                                               |
+| `comentario` | `objeto`    | El recurso de [`discussion comment`](/graphql/guides/using-the-graphql-api-for-discussions#discussioncomment). |
+{% data reusables.webhooks.discussion_desc %}
+{% data reusables.webhooks.repo_desc_graphql %}
+{% data reusables.webhooks.org_desc_graphql %}
+{% data reusables.webhooks.sender_desc %}
+
+#### Ejemplo de carga útil del webhook
+
+{{ webhookPayloadsForCurrentVersion.discussion_comment.created }}
+{% endif %}
+
 {% if enterpriseServerVersions contains currentVersion or currentVersion == "github-ae@latest" %}
 
-### enterprise
+### empresa
 
 {% data reusables.webhooks.enterprise_short_desc %}
 
@@ -360,7 +416,7 @@ Solo las {% data variables.product.prodname_github_app %}s podrán recibir este 
 
 {% endif %}
 
-### fork
+### bifurcación
 
 {% data reusables.webhooks.fork_short_desc %}
 
@@ -431,7 +487,7 @@ Este evento ocurre cuando alguien revoca su autorización de una {% data variabl
 
 {% note %}
 
-**Nota:** No recibirás un webhook para este evento cuando cargues más de tres etiquetas al mismo tiempo.
+**Nota:** Este evento reemplaza al evento obsoletizado de `integration_installation`.
 
 {% endnote %}
 
@@ -455,7 +511,7 @@ Este evento ocurre cuando alguien revoca su autorización de una {% data variabl
 
 {% note %}
 
-`repository` cuando el evento ocurre desde una actividad en un repositorio.
+**Nota:** Este evento remplaza al evento obsoletizado de `integration_installation_repositories`.
 
 {% endnote %}
 
@@ -519,7 +575,7 @@ Este evento ocurre cuando alguien revoca su autorización de una {% data variabl
 
 {{ webhookPayloadsForCurrentVersion.issues.edited }}
 
-### label
+### etiqueta
 
 {% data reusables.webhooks.label_short_desc %}
 
@@ -570,7 +626,7 @@ Para obtener una descripción detallada de esta carga útil y de aquella para ca
 
 {% endif %}
 
-### member
+### miembro
 
 {% data reusables.webhooks.member_short_desc %}
 
@@ -637,7 +693,7 @@ Se eliminó el evento para el cual se configuró este webhook. Este evento únic
 
 {{ webhookPayloadsForCurrentVersion.meta.deleted }}
 
-### milestone
+### hito
 
 {% data reusables.webhooks.milestone_short_desc %}
 
@@ -714,7 +770,7 @@ Se eliminó el evento para el cual se configuró este webhook. Este evento únic
 
 {% if currentVersion == "free-pro-team@latest" or currentVersion == "github-ae@latest" %}
 
-### package
+### paquete
 
 Actividad relacionada con el {% data variables.product.prodname_registry %}. {% data reusables.webhooks.action_type_desc %} para obtener más información, consulta la sección "[Administrar paquetes con {% data variables.product.prodname_registry %}](/github/managing-packages-with-github-packages)" para aprender más sobre el {% data variables.product.prodname_registry %}.
 
@@ -946,7 +1002,7 @@ Las entregas para los eventos `review_requested` y `review_request_removed` tend
 
 {{ webhookPayloadsForCurrentVersion.pull_request_review_comment.created }}
 
-### push
+### subir
 
 {% data reusables.webhooks.push_short_desc %}
 
@@ -955,12 +1011,6 @@ Las entregas para los eventos `review_requested` y `review_request_removed` tend
 **Nota:** No recibirás un webhook para este evento cuando cargues más de tres etiquetas al mismo tiempo.
 
 {% endnote %}
-
-{% tip %}
-
-**Nota**: El ejemplo de la carga útil del webhook siguiendo la tabla difiere significativamente de la carga útil de la API de Eventos descrita en la misma. Entre otras diferencias, la carga útil del webhook incluye ambos objetos, `sender` y `pusher`. El remitente y cargador son el mismo usuario que inició el evento `push`, pero el objeto `sender` contiene más detalles.
-
-{% endtip %}
 
 #### Disponibilidad
 
@@ -997,7 +1047,7 @@ Las entregas para los eventos `review_requested` y `review_request_removed` tend
 
 {{ webhookPayloadsForCurrentVersion.push }}
 
-### release
+### lanzamiento
 
 {% data reusables.webhooks.release_short_desc %}
 
@@ -1152,7 +1202,7 @@ Actividad relacionada con una asesoría de seguridad. Una asesoría de seguridad
 
 {% data reusables.webhooks.sponsorship_short_desc %}
 
-Solo puedes crear un webhook de patrocinio en {% data variables.product.prodname_dotcom %}. Para obtener más información, consulta la sección "[Configurar webhooks para eventos en tu cuenta patrocinada](/github/supporting-the-open-source-community-with-github-sponsors/configuring-webhooks-for-events-in-your-sponsored-account)".
+Solo puedes crear un webhook de patrocinio en {% data variables.product.prodname_dotcom %}. Para obtener más información, consulta la sección "[Configurar webhooks para eventos en tu cuenta patrocinada](/sponsors/integrating-with-github-sponsors/configuring-webhooks-for-events-in-your-sponsored-account)".
 
 #### Disponibilidad
 
@@ -1174,7 +1224,7 @@ Solo puedes crear un webhook de patrocinio en {% data variables.product.prodname
 
 {% endif %}
 
-### star
+### estrella
 
 {% data reusables.webhooks.star_short_desc %}
 
@@ -1194,7 +1244,7 @@ Solo puedes crear un webhook de patrocinio en {% data variables.product.prodname
 
 {{ webhookPayloadsForCurrentVersion.star.created }}
 
-### status
+### estado
 
 {% data reusables.webhooks.status_short_desc %}
 
@@ -1223,7 +1273,7 @@ Solo puedes crear un webhook de patrocinio en {% data variables.product.prodname
 
 {{ webhookPayloadsForCurrentVersion.status }}
 
-### team
+### equipo
 
 {% data reusables.webhooks.team_short_desc %}
 
@@ -1279,7 +1329,7 @@ Solo puedes crear un webhook de patrocinio en {% data variables.product.prodname
 
 {% if enterpriseServerVersions contains currentVersion or currentVersion == "github-ae@latest" %}
 
-### user
+### usuario
 
 Cuando se aplica `created` o `deleted` a un usuario.
 
@@ -1292,7 +1342,7 @@ Cuando se aplica `created` o `deleted` a un usuario.
 
 {% endif %}
 
-### watch
+### observar
 
 {% data reusables.webhooks.watch_short_desc %}
 
