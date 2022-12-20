@@ -1,7 +1,7 @@
 ---
 title: 代码安全
-shortTitle: 代码安全
-intro: '在您的 {% data variables.product.prodname_dotcom %} 工作流程中建立安全与功能，以使您的代码库{% ifversion not ghae %} 中不含秘密和漏洞，维护您的软件供应链{% endif %}。'
+shortTitle: Code security
+intro: '在你的 {% data variables.product.prodname_dotcom %} 工作流中建立安全与功能，以使你的代码库中不含秘密和漏洞{% ifversion not ghae %}，并维护你的软件供应链{% endif %}。'
 introLinks:
   overview: /code-security/getting-started/github-security-features
 featuredLinks:
@@ -19,6 +19,7 @@ featuredLinks:
     - '{% ifversion ghes < 3.3 or ghae %}/code-security/secret-scanning/configuring-secret-scanning-for-your-repositories{% endif %}'
     - '{% ifversion ghae %}/code-security/code-scanning/integrating-with-code-scanning/uploading-a-sarif-file-to-github{% endif %}'
     - '{% ifversion ghae %}/code-security/code-scanning/using-codeql-code-scanning-with-your-existing-ci-system{% endif %}'
+    - /code-security/supply-chain-security/end-to-end-supply-chain/end-to-end-supply-chain-overview
   popular:
     - '{% ifversion ghes %}/admin/release-notes{% endif %}'
     - /code-security/supply-chain-security/managing-vulnerabilities-in-your-projects-dependencies/about-alerts-for-vulnerable-dependencies
@@ -49,11 +50,19 @@ topics:
   - Vulnerabilities
 children:
   - /getting-started
+  - /adopting-github-advanced-security-at-scale
   - /secret-scanning
   - /code-scanning
   - /repository-security-advisories
   - /supply-chain-security
+  - /dependabot
   - /security-overview
   - /guides
+ms.openlocfilehash: 90d3ad046a6531849edd8e783db265866f118d90
+ms.sourcegitcommit: 47bd0e48c7dba1dde49baff60bc1eddc91ab10c5
+ms.translationtype: HT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 09/05/2022
+ms.locfileid: '147145237'
 ---
 

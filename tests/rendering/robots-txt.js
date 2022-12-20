@@ -1,6 +1,5 @@
-import languages from '../../lib/languages.js'
 import robotsParser from 'robots-parser'
-import { get } from '../helpers/supertest.js'
+import { get } from '../helpers/e2etest.js'
 import { jest } from '@jest/globals'
 
 describe('robots.txt', () => {
@@ -8,7 +7,11 @@ describe('robots.txt', () => {
 
   let res, robots
   beforeAll(async () => {
-    res = await get('/robots.txt')
+    res = await get('/robots.txt', {
+      headers: {
+        Host: 'docs.github.com',
+      },
+    })
     robots = robotsParser('https://docs.github.com/robots.txt', res.text)
   })
 
@@ -18,19 +21,6 @@ describe('robots.txt', () => {
     expect(
       robots.isAllowed('https://docs.github.com/en/articles/verifying-your-email-address')
     ).toBe(true)
-  })
-
-  it('allows indexing of generally available localized content', async () => {
-    Object.values(languages)
-      .filter((language) => !language.wip)
-      .forEach((language) => {
-        expect(robots.isAllowed(`https://docs.github.com/${language.code}`)).toBe(true)
-        expect(
-          robots.isAllowed(
-            `https://docs.github.com/${language.code}/articles/verifying-your-email-address`
-          )
-        ).toBe(true)
-      })
   })
 
   it('disallows indexing of azurecontainer.io domains', async () => {

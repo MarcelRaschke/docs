@@ -1,6 +1,6 @@
 import { fileURLToPath } from 'url'
 import path from 'path'
-import { get, isPlainObject, has } from 'lodash-es'
+import { get, isPlainObject } from 'lodash-es'
 import flat from 'flat'
 import walkSync from 'walk-sync'
 import { ParseError } from 'liquidjs'
@@ -19,7 +19,6 @@ describe('siteData module (English)', () => {
 
   test('sets a top-level key for each language', async () => {
     expect('en' in data).toEqual(true)
-    expect('ja' in data).toEqual(true)
   })
 
   test('includes English variables', async () => {
@@ -33,16 +32,6 @@ describe('siteData module (English)', () => {
       'en.site.data.reusables.command_line.switching_directories_procedural'
     )
     expect(reusable).toBe('1. Change the current working directory to your local repository.')
-  })
-
-  test('includes Japanese variables', async () => {
-    const prodName = get(data, 'ja.site.data.variables.product.prodname_dotcom')
-    expect(prodName).toBe('GitHub')
-  })
-
-  test('includes Japanese reusables', async () => {
-    const reusable = get(data, 'ja.site.data.reusables.audit_log.octicon_icon')
-    expect(reusable.includes('任意のページの左上で')).toBe(true)
   })
 
   test('all Liquid tags are valid', async () => {
@@ -87,18 +76,5 @@ describe('siteData module (English)', () => {
       '\n'
     )}`
     expect(yamlReusables.length, message).toBe(0)
-  })
-
-  test('all non-English data has matching English data', async () => {
-    for (const languageCode of Object.keys(data)) {
-      if (languageCode === 'en') continue
-
-      const nonEnglishKeys = Object.keys(flat(data[languageCode]))
-      for (const key of nonEnglishKeys) {
-        if (!has(data.en, key)) {
-          throw new Error(`matching data not found for ${languageCode}.${key}`)
-        }
-      }
-    }
   })
 })
