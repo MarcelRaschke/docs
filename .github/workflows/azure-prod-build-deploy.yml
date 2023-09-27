@@ -49,7 +49,7 @@ jobs:
         uses: docker/setup-buildx-action@95cb08cb2672c73d4ffd2f422e6d11953d2a9c70
 
       - name: Check out repo
-        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8
+        uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608
         with:
           ref: ${{ github.sha }}
           # To prevent issues with cloning early access content later
@@ -62,7 +62,7 @@ jobs:
           cache: npm
 
       - name: Clone docs-early-access
-        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8
+        uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608
         with:
           repository: github/docs-early-access
           token: ${{ secrets.DOCUBOT_REPO_PAT }}
@@ -72,56 +72,56 @@ jobs:
         run: .github/actions-scripts/merge-early-access.sh
 
       - name: Clone Simplified Chinese
-        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8
+        uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608
         with:
           repository: github/docs-internal.zh-cn
           token: ${{ secrets.DOCUBOT_REPO_PAT }}
           path: translations/zh-cn
 
       - name: Clone Japanese
-        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8
+        uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608
         with:
           repository: github/docs-internal.ja-jp
           token: ${{ secrets.DOCUBOT_REPO_PAT }}
           path: translations/ja-jp
 
       - name: Clone Spanish
-        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8
+        uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608
         with:
           repository: github/docs-internal.es-es
           token: ${{ secrets.DOCUBOT_REPO_PAT }}
           path: translations/es-es
 
       - name: Clone Portuguese
-        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8
+        uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608
         with:
           repository: github/docs-internal.pt-br
           token: ${{ secrets.DOCUBOT_REPO_PAT }}
           path: translations/pt-br
 
       - name: Clone German
-        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8
+        uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608
         with:
           repository: github/docs-internal.de-de
           token: ${{ secrets.DOCUBOT_REPO_PAT }}
           path: translations/de-de
 
       - name: Clone French
-        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8
+        uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608
         with:
           repository: github/docs-internal.fr-fr
           token: ${{ secrets.DOCUBOT_REPO_PAT }}
           path: translations/fr-fr
 
       - name: Clone Russian
-        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8
+        uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608
         with:
           repository: github/docs-internal.ru-ru
           token: ${{ secrets.DOCUBOT_REPO_PAT }}
           path: translations/ru-ru
 
       - name: Clone Korean
-        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8
+        uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608
         with:
           repository: github/docs-internal.ko-kr
           token: ${{ secrets.DOCUBOT_REPO_PAT }}
