@@ -172,7 +172,7 @@
   "optionalDependencies": {
     "esm": "^3.2.25",
     "image-size": "^1.0.1",
-    "jest-puppeteer": "^5.0.4",
+    "jest-puppeteer": "^9.0.2",
     "puppeteer": "^19.4.1",
     "website-scraper": "^5.0.0"
   },
