@@ -171,7 +171,7 @@
   "name": "docs.github.com",
   "optionalDependencies": {
     "esm": "^3.2.25",
-    "image-size": "^1.0.1",
+    "image-size": "^2.0.3",
     "jest-puppeteer": "^5.0.4",
     "puppeteer": "^19.4.1",
     "website-scraper": "^5.0.0"
